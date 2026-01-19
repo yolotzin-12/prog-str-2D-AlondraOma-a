@@ -1,10 +1,7 @@
 import java.util.Scanner;
 public class Main {
-     public static double RANGO_BAJO=18.5;
-     public static double RANGO_MEDIO=25;
-     public static double RANGO_ALTO=30;
-     public static final double PI=3.14.16;
-     public static void main(String[] args) {
+    public static final double PI = 3.1416;
+    public static void main(String[] args) {
          Scanner scanner= new Scanner(System.in);
          int choice;
          do {
@@ -21,11 +18,10 @@ public class Main {
              switch (choice) {
                  case 1:
                      System.out.println("SELECCIONASTE IMC");
-                     double pesoKg = obtenerDouble(scanner, "Ingresa el peso em kilogramos");
+                     double pesoKg = obtenerDouble(scanner, "Ingresa el peso en kilogramos");
                      double alturaM = obtenerDouble(scanner,"Ingrese la altura: ");
                      double imc = CalcularImc(pesoKg,alturaM);
                      System.out.println("Tu IMC es de: " +imc);
-                     System.out.println("Clasificacion: " + ObtenerClasificacion(imc) );
                      break;
                  case 2:
                      System.out.println("SELECCIONASTE AREA DE UN CIRCULO");
@@ -35,9 +31,16 @@ public class Main {
                      break;
                  case 3:
                      System.out.println("SELECCIONASTE CONVERTIR DE °C A °F");
+                     double celsius = obtenerCaF(scanner,"Ingresa los grados celsius: ");
+                     double fahrenheit = calcularCaF(celsius);
+                     System.out.println("El equivalente en Fahrenheit es: " + fahrenheit + " °F");
                      break;
                  case 4:
                      System.out.println("SELECCIONASTE AREA DE UN RECTANGULO");
+                     double base = obtenerRectangulo(scanner,"Ingresa la base del rectangulo: ");
+                     double alturaRectangulo = obtenerRectangulo(scanner,"Ingresa la altura del rectangulo: ");
+                     double arearectangulo = calcularRectangulo(base,alturaRectangulo);
+                     System.out.println("El area del rectangulo es: " + arearectangulo);
                      break;
                  case 5:
                      System.out.println("SALISTE DEL PROGRAMA");
@@ -52,8 +55,52 @@ public class Main {
 
      }
 
+    /**
+     * Metodo para capturar los grados a celsius
+     * @param sc -> Previamente instanciado desde el main
+     * @param mensaje -> String enviado como parametro
+     * @return double
+     */
+     public static double obtenerCaF(Scanner sc, String mensaje){
+         System.out.println(mensaje);
+         return sc.nextDouble();
+     }
+
+    /**
+     * Metodo para convertir de grados a celsius
+     * @param celsius -> Temperatura en grados celsius
+     * @return double
+     */
+     public static double calcularCaF(double celsius){
+        return (celsius * 1.8) + 32;
+    }
+
+
+    /**
+     * Metodo para calcular el area del rectangulo
+     * @param base -> Base del rectangulo
+     * @param alturaRectangulo -> Altura del rectangulo
+     * @return double
+     */
+     public static double calcularRectangulo(double base, double alturaRectangulo){
+        return base*alturaRectangulo;
+     }
+
+
+    /**
+     *Metoodo para calcular el area de un rectangulo
+     * @param sc -> Previamente instanciado desde el main
+     * @param mensaje -> String enviado como parametro
+     * @return double
+     */
+     public static double obtenerRectangulo(Scanner sc, String mensaje){
+         System.out.println(mensaje);
+         return sc.nextDouble();
+     }
+
+
      /**
-      * Metodo para capturar
+      * Metodo para capturar el area del circulo
       * @param sc -> Previamente instanciado desde el main
       * @param mensaje -> String enviado como parametro
       * @return double
@@ -64,13 +111,15 @@ public class Main {
      }
 
      /**
-      *
+      *Metodo para calcular el area del circulo
       * @param radio -> radio del circulo
       * @return double
       */
      public static double CalcularArea(double radio){
          return PI * radio * radio;
      }
+
+
      /**
       * Metodo para capturar un double desde consola
       * @param sc -> Previamente instanciado desde el main
@@ -81,6 +130,7 @@ public class Main {
          System.out.println(mensaje);
          return sc.nextDouble();
      }
+
 
      /**
       * Metodo para calcular IMC usando la formula pesoKg/altura²
@@ -93,16 +143,5 @@ public class Main {
          return pesoKG/(alturaM*alturaM);
      }
 
-     /**
-      * Metodo usado para obtener una clasificacion del IMC, segun las reglas de negocio
-      * @param imc -> previamente calculado
-      * @return -> String de calificacion en relacion al imc
-      */
-     public static String ObtenerClasificacion(double imc){
-         if(imc<18.5) return "Bajo de peso";
-         else if(imc<25) return "Peso medio";
-         else if(imc<30)  return "Sobre peso";
-         else return "Obesidad";
 
-     }
     }
