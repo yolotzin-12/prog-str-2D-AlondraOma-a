@@ -33,7 +33,6 @@ public class ActividadIfElseTarifa {
             }
         }
 
-        System.out.println("\n--- RESUMEN ---");
         System.out.println("Edad ingresada: " + edad);
         System.out.println("¿Es estudiante?: " + (esEstudiante ? "Sí" : "No"));
         System.out.println("Tarifa final: $" + tarifa);
